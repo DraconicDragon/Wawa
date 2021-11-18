@@ -11,3 +11,5 @@ im going insane
 has 2 features as of whenever it has the features:
 - per server prefix
 - URL UNshortener
+
+oh yeah the bot token is in the file i uploaded btw... its invalid lol, cant be bothered to remove it or maybe ill do at some point
