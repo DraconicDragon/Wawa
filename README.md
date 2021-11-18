@@ -1,4 +1,4 @@
-# A discord.py (Pycord) bot with the ability to have per-server prefixes
+# A discord.py (Pycord) bot called.... Wawa.  :>
 
 yes yes text blablabla
 
@@ -7,3 +7,7 @@ feelin gud
 very heheheheheeee
 HAHHAHAHAAHAH
 im going insane
+
+has 2 features as of whenever it has the features:
+- per server prefix
+- URL UNshortener
