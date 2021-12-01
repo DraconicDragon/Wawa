@@ -13,6 +13,13 @@ async def on_ready():
     print("-----------------------\nLogged in as {0.user}".format(bot))
 
 
+@bot.event
+async def on_message(message):
+    if message.author == bot.user or message.author.bot:
+        return
+    await bot.process_commands(message)
+
+
 # loading cogs
 def load_cogs():
     for file in os.listdir("cogs"):
@@ -23,7 +30,7 @@ def load_cogs():
                 print(f"loaded '{extension}'")
             except Exception as e:
                 exception = f"{type(e).__name__}: {e}"
-                print(f"Error occured for {extension}:\n{exception}")
+                print(f"Error occurred for {extension}:\n{exception}")
 
     # same thing for cogs/Listeners
     for file in os.listdir("cogs/Listeners"):
@@ -34,17 +41,9 @@ def load_cogs():
                 print(f"loaded '{extension}'")
             except Exception as e:
                 exception = f"{type(e).__name__}: {e}"
-                print(f"Error occured for {extension}:\n{exception}")
+                print(f"Error occurred for {extension}:\n{exception}")
 
 
 load_cogs()
-
-
-@bot.event
-async def on_message(message):
-    if message.author == bot.user or message.author.bot:
-        return
-    await bot.process_commands(message)
-
 
 bot.run('TOKEN')

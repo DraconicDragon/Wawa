@@ -5,7 +5,7 @@ from discord.ext import commands
 from discord.ext.commands import has_permissions
 
 
-class prefix(commands.Cog, name="Administration"):
+class Prefix(commands.Cog, name="Administration"):
     def __init__(self, bot):
         self.bot = bot
 
@@ -46,4 +46,4 @@ class prefix(commands.Cog, name="Administration"):
 
 
 def setup(bot):
-    bot.add_cog(prefix(bot))
+    bot.add_cog(Prefix(bot))
