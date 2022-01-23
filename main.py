@@ -3,7 +3,7 @@ from discord.ext.commands import Bot
 from cogs.Listeners import prefix_manager
 
 bot = Bot(
-    case_insensitive=True,  # don't ask me.
+    case_insensitive=True,
     command_prefix=prefix_manager.get_prefix,
 )
 
@@ -19,31 +19,31 @@ async def on_message(message):
         return
     await bot.process_commands(message)
 
+    if message.content.startswith('wawa reload'):
+        for file in os.listdir("cogs"):
+            if file.endswith(".py"):
+                extension = file[:-3]
+                try:
+                    bot.reload_extension(f"cogs.{extension}")
+                    print(f"reloaded '{extension}'")
+                except Exception as e:
+                    exception = f"{type(e).__name__}: {e}"
+                    print(f"Error occurred for {extension}:\n{exception}")
 
-# loading cogs
-def load_cogs():
-    for file in os.listdir("cogs"):
+
+def cogs_dir(dir, ext_dir):
+    for file in os.listdir(f"{dir}"):
         if file.endswith(".py"):
             extension = file[:-3]
             try:
-                bot.load_extension(f"cogs.{extension}")
+                bot.load_extension(f"{ext_dir}.{extension}")
                 print(f"loaded '{extension}'")
             except Exception as e:
                 exception = f"{type(e).__name__}: {e}"
                 print(f"Error occurred for {extension}:\n{exception}")
 
-    # same thing for cogs/Listeners
-    for file in os.listdir("cogs/Listeners"):
-        if file.endswith(".py"):
-            extension = file[:-3]
-            try:
-                bot.load_extension(f"cogs.Listeners.{extension}")
-                print(f"loaded '{extension}'")
-            except Exception as e:
-                exception = f"{type(e).__name__}: {e}"
-                print(f"Error occurred for {extension}:\n{exception}")
+cogs_dir("cogs", "cogs")
+cogs_dir("cogs/Listeners", "cogs.Listeners")
 
-
-load_cogs()
 
 bot.run('TOKEN')
